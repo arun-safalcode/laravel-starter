@@ -11,6 +11,8 @@
 - Best of luck 
 
 ## Credentials
+## Login URL
+- http://127.0.0.1:8000/admin/login
 - #### Super Admin
 - email: superadmin@superadmin.com
 - password : password
