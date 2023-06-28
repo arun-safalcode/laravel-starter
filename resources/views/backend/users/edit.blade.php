@@ -51,6 +51,11 @@
                                 <input type="password" name="password_confirmation" class="form-control"
                                     id="exampleInputPassword" placeholder="Confirm password">
                             </div>
+                            @php
+                                $current_user_role = auth()->user()->roles->pluck('name')[0] ?? '';
+                                $edit_user = $user->roles->pluck('name')[0] ?? '';
+                            @endphp
+                            @if($current_user_role != $edit_user)
                             <div class="form-group">
                                 <label for="exampleInputRoles">Role</label><br />
                                 @foreach ($roles as $role)
@@ -67,6 +72,7 @@
                                     @endif
                                 @endforeach
                             </div>
+                            
                             @role('super admin')
                             <div class="form-group">
                                 <label for="exampleInputPermissions">Permissions</label><br />
@@ -83,6 +89,7 @@
                                 @endforeach
                             </div>
                             @endrole
+                            @endif
                         </div>
                         <!-- /.card-body -->
 

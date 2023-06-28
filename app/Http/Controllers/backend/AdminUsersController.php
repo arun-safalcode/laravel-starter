@@ -94,9 +94,8 @@ class AdminUsersController extends Controller
         $user->roles;
         $permission = Permission::get();
         $user->permissions;
-        if($user->roles[0]->name != 'super admin'){
-            return view('backend.users.edit',['user'=>$user,'roles' => $role, 'permissions'=>$permission]);
-        }
+        $current_user_role = auth()->user()->roles->pluck('name')[0] ?? '';
+        return view('backend.users.edit',['user'=>$user,'roles' => $role, 'permissions'=>$permission]);
     }
 
     /**
@@ -120,8 +119,12 @@ class AdminUsersController extends Controller
         }
 
         $user->update($validated);
-        $user->syncRoles($request->roles);
-        $user->syncPermissions($request->permissions);
+        $current_user_role = auth()->user()->roles->pluck('name')[0] ?? '';
+        $edit_user = $user->roles->pluck('name')[0] ?? '';
+        if($current_user_role != $edit_user){
+            $user->syncRoles($request->roles);
+            $user->syncPermissions($request->permissions);
+        }
         return redirect()->back()->withSuccess('User updated !!!');
     }
 

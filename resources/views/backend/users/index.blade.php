@@ -66,8 +66,11 @@
                   @endif
                 </td>
                 <td width="10%" >
-                  @if($user->roles[0]->name == 'super admin')
-                    <span class="text-danger" >Not allow</span>
+                  @php
+                    $current_user_role = auth()->user()->roles->pluck('name')[0] ?? '';
+                  @endphp
+                  @if($user->roles[0]->name == 'super admin' && $user->roles[0]->name != $current_user_role)
+                    <span class="text-danger" >Not allows</span>
                   @else
                   @can('User edit')
                     <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-block btn-primary btn-sm">Edit</a>

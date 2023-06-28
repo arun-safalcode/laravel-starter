@@ -13,6 +13,7 @@
             @foreach(auth()->user()->roles as $role)
                 {{ $role->name }}
             @endforeach 
+            
             </b> </p>
          </div><!-- /.col -->
          

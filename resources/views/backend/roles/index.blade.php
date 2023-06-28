@@ -64,7 +64,7 @@
                   @if($role->name == 'super admin' && $role->name != $current_user_role)
                     <span class="text-danger" >Not allow</span>
                   @else
-                  @can('Role edit')
+                  @can('Role edit') 
                     <a href="{{route('admin.roles.edit',$role->id)}}" class="btn btn-block btn-primary btn-sm">Edit</a>
                   @endcan
                   &nbsp;

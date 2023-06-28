@@ -203,8 +203,8 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\storage\\framework/cache/data',
-        'lock_path' => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\storage\\framework/cache/data',
+        'path' => 'D:\\xampp\\htdocs\\laravel-starter\\storage\\framework/cache/data',
+        'lock_path' => 'D:\\xampp\\htdocs\\laravel-starter\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -377,13 +377,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\storage\\app',
+        'root' => 'D:\\xampp\\htdocs\\laravel-starter\\storage\\app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\storage\\app/public',
+        'root' => 'D:\\xampp\\htdocs\\laravel-starter\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
         'throw' => false,
@@ -403,7 +403,7 @@
     ),
     'links' => 
     array (
-      'D:\\xampp\\htdocs\\starter-admin-with-roles\\public\\storage' => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\storage\\app/public',
+      'D:\\xampp\\htdocs\\laravel-starter\\public\\storage' => 'D:\\xampp\\htdocs\\laravel-starter\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -442,14 +442,14 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp\\htdocs\\laravel-starter\\storage\\logs/laravel.log',
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp\\htdocs\\laravel-starter\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
         'replace_placeholders' => true,
@@ -514,7 +514,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp\\htdocs\\laravel-starter\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -581,7 +581,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\resources\\views/vendor/mail',
+        0 => 'D:\\xampp\\htdocs\\laravel-starter\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -730,7 +730,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\storage\\framework/sessions',
+    'files' => 'D:\\xampp\\htdocs\\laravel-starter\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -750,9 +750,9 @@
   array (
     'paths' => 
     array (
-      0 => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\resources\\views',
+      0 => 'D:\\xampp\\htdocs\\laravel-starter\\resources\\views',
     ),
-    'compiled' => 'D:\\xampp\\htdocs\\starter-admin-with-roles\\storage\\framework\\views',
+    'compiled' => 'D:\\xampp\\htdocs\\laravel-starter\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -828,7 +828,7 @@
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => 'D:\\xampp\\htdocs\\starter-admin-with-roles',
+    'remote_sites_path' => 'D:\\xampp\\htdocs\\laravel-starter',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',
