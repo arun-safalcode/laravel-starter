@@ -3,7 +3,6 @@
 - cd laravel-starter
 - open .env and update DB_DATABASE (database details)
 - run : `composer update`
-- run : `composer install`
 - run : `php artisan key:generate`
 - run : `php artisan migrate:fresh --seed`
 - run : `php artisan serve`
