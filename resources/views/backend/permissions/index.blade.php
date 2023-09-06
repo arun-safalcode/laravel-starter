@@ -51,7 +51,9 @@
                   @foreach($permissions as $permission)
               <tr>
                 <td>{{ $permission->name }}</td>
+               
                 <td width="10%">
+                  @if($permission->delete_status == 0)
                   @can('Permission edit')
                     <a href="{{route('admin.permissions.edit',$permission->id)}}" class="btn btn-block btn-primary btn-sm">Edit</a>
                   @endcan
@@ -63,7 +65,9 @@
                         <button class="btn btn-block btn-danger btn-sm">Delete</button>
                     </form>
                   @endcan
+                  @endif
                 </td>
+                
               </tr>
               @endforeach
               @endcan

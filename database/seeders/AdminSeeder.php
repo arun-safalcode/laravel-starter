@@ -28,25 +28,23 @@ class AdminSeeder extends Seeder
         ]);
 
 
-        $super_admin_role = Role::create(['name' => 'super admin']);
+        $super_admin_role = Role::create(['name' => 'super admin', 'delete_status'=>1]);
         $admin_role = Role::create(['name' => 'admin']);
 
-        $permission = Permission::create(['name' => 'Role access']);
-        $permission = Permission::create(['name' => 'Role edit']);
-        $permission = Permission::create(['name' => 'Role create']);
-        $permission = Permission::create(['name' => 'Role delete']);
+        $permission = Permission::create(['name' => 'Role access', 'delete_status'=>1]);
+        $permission = Permission::create(['name' => 'Role edit', 'delete_status'=>1]);
+        $permission = Permission::create(['name' => 'Role create', 'delete_status'=>1]);
+        $permission = Permission::create(['name' => 'Role delete', 'delete_status'=>1]);
 
-        $permission = Permission::create(['name' => 'User access']);
-        $permission = Permission::create(['name' => 'User edit']);
-        $permission = Permission::create(['name' => 'User create']);
-        $permission = Permission::create(['name' => 'User delete']);
+        $permission = Permission::create(['name' => 'User access', 'delete_status'=>1]);
+        $permission = Permission::create(['name' => 'User edit', 'delete_status'=>1]);
+        $permission = Permission::create(['name' => 'User create', 'delete_status'=>1]);
+        $permission = Permission::create(['name' => 'User delete', 'delete_status'=>1]);
 
-        $permission = Permission::create(['name' => 'Permission access']);
-        $permission = Permission::create(['name' => 'Permission edit']);
-        $permission = Permission::create(['name' => 'Permission create']);
-        $permission = Permission::create(['name' => 'Permission delete']);
-
-
+        $permission = Permission::create(['name' => 'Permission access', 'delete_status'=>1]);
+        $permission = Permission::create(['name' => 'Permission edit', 'delete_status'=>1]);
+        $permission = Permission::create(['name' => 'Permission create', 'delete_status'=>1]);
+        $permission = Permission::create(['name' => 'Permission delete', 'delete_status'=>1]);
 
         $admin->assignRole($admin_role);
         $superAdmin->assignRole($super_admin_role);

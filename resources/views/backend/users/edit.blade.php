@@ -77,6 +77,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPermissions">Permissions</label><br />
                                 @foreach ($permissions as $permission)
+                                @if($permission->delete_status == 0)
                                         <label class="col-sm-4 col-md-2 border" >
                                             <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600"
                                             name="permissions[]" value="{{ $permission->id }}"
@@ -86,6 +87,7 @@
                                             >
                                             <span class="ml-2 text-gray-700">{{ $permission->name }}</span>
                                     </label>
+                                @endif
                                 @endforeach
                             </div>
                             @endrole

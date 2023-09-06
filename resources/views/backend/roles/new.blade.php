@@ -41,11 +41,13 @@
                                 @foreach ($permissions as $permission)
                                 {{-- <div class="flex flex-col justify-cente"> --}}
                                     {{-- <div class="flex flex-col"> --}}
+                                        @if($permission->delete_status == 0)
                                         <label class="col-sm-4 col-md-2">
                                             <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600"
                                             name="permissions[]" value="{{ $permission->id }}">
                                             <span class="ml-2 text-gray-700">{{ $permission->name }}</span>
                                     </label>
+                                    @endif
                                     {{-- </div> --}}
                                     {{-- </div> --}}
                                 @endforeach

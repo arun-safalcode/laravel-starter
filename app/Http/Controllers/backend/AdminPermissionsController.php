@@ -4,6 +4,9 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 class AdminPermissionsController extends Controller
 {
@@ -49,12 +52,26 @@ class AdminPermissionsController extends Controller
      */
     public function store(Request $request)
     {
-        // validation 
+        // Validation
         $request->validate([
-            'name'=>'required',
+            'name' => 'required',
         ]);
-        $permission = Permission::create(['name'=>$request->name]);
-        return redirect()->back()->withSuccess('Permission created !!!');
+
+        // Create the permission
+        $permission = Permission::create(['name' => $request->name]);
+
+        // Retrieve the super admin role ID (you should replace 'superadmin' with the actual role name)
+        $superAdminRoleId = Role::where('name', 'super admin')->value('id');
+
+        if ($superAdminRoleId) {
+            // Insert the relationship into role_has_permissions table
+            DB::table('role_has_permissions')->insert([
+                'permission_id' => $permission->id,
+                'role_id' => $superAdminRoleId,
+            ]);
+        }
+
+        return redirect()->back()->withSuccess('Permission created and assigned to super admin role!!!');
     }
 
     /**
@@ -88,8 +105,13 @@ class AdminPermissionsController extends Controller
      */
     public function update(Request $request, Permission $permission)
     {
-        $permission->update(['name'=>$request->name]);
-        return redirect()->back()->withSuccess('Permission updated !!!');
+        if ($permission->delete_status == 0) {
+            $permission->update(['name'=>$request->name]);
+            return redirect()->back()->withSuccess('Permission updated !!!');
+        }else{
+            return redirect()->back()->withError('Permission cannot be updated.');
+        }
+
     }
 
     /**
@@ -100,7 +122,11 @@ class AdminPermissionsController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        $permission->delete();
-        return redirect()->back()->withError('Permission deleted !!!');
+        if ($permission->delete_status == 0) {
+            $permission->delete();
+            return redirect()->back()->withSuccess('Permission deleted successfully.');
+        } else {
+            return redirect()->back()->withError('Permission cannot be deleted.');
+        }
     }
 }

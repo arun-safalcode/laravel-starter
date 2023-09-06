@@ -98,9 +98,14 @@ class AdminRolesController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        $role->update(['name'=>$request->name]);
-        $role->syncPermissions($request->permissions);
-        return redirect()->back()->withSuccess('Role updated !!!');
+        if($role->name != 'super admin'){
+            $role->update(['name'=>$request->name]);
+            $role->syncPermissions($request->permissions);
+            return redirect()->back()->withSuccess('Role updated !!!');
+        }else{
+            return redirect()->back()->withError('Role cannot be updated.');
+        }
+        
     }
 
     /**

@@ -58,27 +58,29 @@
                   @endforeach
                 </td>
                 <td>
-                  @php
-                    $current_user_role = auth()->user()->roles->pluck('name')[0] ?? '';
-                  @endphp
-                  @if($role->name == 'super admin' && $role->name != $current_user_role)
-                    <span class="text-danger" >Not allow</span>
-                  @else
-                  @can('Role edit') 
-                    <a href="{{route('admin.roles.edit',$role->id)}}" class="btn btn-block btn-primary btn-sm">Edit</a>
-                  @endcan
-                  &nbsp;
-                  @can('Role delete')
-                  @if($role->name == 'super admin')
-                    <span class="text-danger" >Not allow</span>
-                  @else
-                    <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" class="inline">
-                        @csrf
-                        @method('delete')
-                        <button class="btn btn-block btn-danger btn-sm">Delete</button>
-                    </form>
-                  @endif
-                  @endcan
+                  @if($role->delete_status == 0)
+                    @php
+                      $current_user_role = auth()->user()->roles->pluck('name')[0] ?? '';
+                    @endphp
+                    @if($role->name == 'super admin' && $role->name != $current_user_role)
+                      <span class="text-danger" >Not allow</span>
+                    @else
+                    @can('Role edit') 
+                      <a href="{{route('admin.roles.edit',$role->id)}}" class="btn btn-block btn-primary btn-sm">Edit</a>
+                    @endcan
+                    &nbsp;
+                    @can('Role delete')
+                    @if($role->name == 'super admin')
+                      <span class="text-danger" >Not allow</span>
+                    @else
+                      <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" class="inline">
+                          @csrf
+                          @method('delete')
+                          <button class="btn btn-block btn-danger btn-sm">Delete</button>
+                      </form>
+                    @endif
+                    @endcan
+                    @endif
                   @endif
                 </td>
               </tr>
