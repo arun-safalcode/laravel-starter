@@ -36,10 +36,10 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Role create', 'delete_status'=>1]);
         $permission = Permission::create(['name' => 'Role delete', 'delete_status'=>1]);
 
-        $permission = Permission::create(['name' => 'User access', 'delete_status'=>1]);
-        $permission = Permission::create(['name' => 'User edit', 'delete_status'=>1]);
-        $permission = Permission::create(['name' => 'User create', 'delete_status'=>1]);
-        $permission = Permission::create(['name' => 'User delete', 'delete_status'=>1]);
+        $permission = Permission::create(['name' => 'User access']);
+        $permission = Permission::create(['name' => 'User edit']);
+        $permission = Permission::create(['name' => 'User create']);
+        $permission = Permission::create(['name' => 'User delete']);
 
         $permission = Permission::create(['name' => 'Permission access', 'delete_status'=>1]);
         $permission = Permission::create(['name' => 'Permission edit', 'delete_status'=>1]);

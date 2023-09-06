@@ -89,13 +89,17 @@ class AdminUsersController extends Controller
      */
     public function edit(User $user)
     {
-
-        $role = Role::get();
-        $user->roles;
-        $permission = Permission::get();
-        $user->permissions;
         $current_user_role = auth()->user()->roles->pluck('name')[0] ?? '';
-        return view('backend.users.edit',['user'=>$user,'roles' => $role, 'permissions'=>$permission]);
+        $edit_user = $user->roles->pluck('name')[0] ?? '';
+        if($edit_user != 'super admin' || $current_user_role == $edit_user){
+            $role = Role::get();
+            $user->roles;
+            $permission = Permission::get();
+            $user->permissions;
+            $current_user_role = auth()->user()->roles->pluck('name')[0] ?? '';
+            return view('backend.users.edit',['user'=>$user,'roles' => $role, 'permissions'=>$permission]);
+        }
+        
     }
 
     /**
@@ -107,6 +111,7 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         $validated = $request->validate([
             'name'=>'required',
             'email' => 'required|email|unique:users,email,'.$user->id.',id',
@@ -118,14 +123,18 @@ class AdminUsersController extends Controller
             $validated['password'] = bcrypt($request->password);
         }
 
-        $user->update($validated);
         $current_user_role = auth()->user()->roles->pluck('name')[0] ?? '';
         $edit_user = $user->roles->pluck('name')[0] ?? '';
-        if($current_user_role != $edit_user){
-            $user->syncRoles($request->roles);
-            $user->syncPermissions($request->permissions);
+        if($edit_user != 'super admin' || $current_user_role == $edit_user){
+            $user->update($validated);
+            if($current_user_role != $edit_user){
+                $user->syncRoles($request->roles);
+                $user->syncPermissions($request->permissions);
+            }
+            return redirect()->back()->withSuccess('User updated !!!');
+        }else{
+            return redirect()->back()->withError('User cannot be updated !!!');
         }
-        return redirect()->back()->withSuccess('User updated !!!');
     }
 
     /**
